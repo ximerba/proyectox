@@ -1,3 +1,18 @@
+<?php
+	require_once 'conexion.php';
+	$resultado;
+	$conexion;
+	$sql;
+	$conexion = dbConnect();
+	// Crea la query
+	$sql = 'SELECT * FROM aplicacion';
+	// Crea la query y asigna el resultado a una variable $resultado
+	$resultado = $conexion->query($sql);
+	// trae los resultados desde $resultado
+	$rows = $resultado->fetchAll();
+ ?>
+
+
 <style type='text/css'> 
 *{ 
     font-size: 14px; 
