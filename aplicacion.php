@@ -140,28 +140,28 @@ form.aplicacion div input[type="submit"] {
 	</fieldset>
 </form>
 <?php
-	include ('conexion.php');
-	//function conectar(){};
-	//resource msql_connect([string $localhost]);
-	$con;
+	include('conexion.php');
+	conectar(@$con);
 	$resultado;
-	
+	$pepe=
+	//$con = dbConnect();
 	// Crea la query
-	$sql = 'SELECT * FROM aplicacion';
+	$sql = "SELECT * FROM usuarios";
 	// Crea la query y asigna el resultado a una variable $resultado
-	$resultado = $con->query($sql);
+	$resultado=mysql_query($sql,$con);
 	// trae los resultados desde $resultado
-	$rows = $resultado->fetchAll();
- ?>
+	@$row = mysql_fetch_assoc($sql);
+	//$rows = $resultado->fetchAll();
 
- <!DOCTYPE html>
-<html lang="es">
+
+echo "
+<html lang='es'>
     <head>
-		<link rel=stylesheet href="../css/style01.css">
+		<link rel=stylesheet href='../css/style01.css'>
 		<!--tengo que ver como dejar igual el aspecto -->
 	</head>
     <body>
-    	<table border="1">
+    	<table border='1'>
 		<thead>
 			<tr>
 				<th>Numero</th>
@@ -170,22 +170,38 @@ form.aplicacion div input[type="submit"] {
 				<th>Direccion</th>
 				<th>Lavado</th>
 				<th>SMS</th>
+				<th>SMS</th>
 			</tr>
 		</thead>
 		<tbody>
-		<?php
-			foreach ($rows as $row) {
-		?>
+		";
+	/*	<td><a href='buscarUsuario.php?id=<?php echo $row['numero']; ?>'><?php echo $row['numero']; ?></a></td>*/
+			//foreach (@$row as $new_row){
+			//}
+			//do
+			echo"
 			<tr>
-				<td><a href="buscarUsuario.php?id=<?php echo $row['numero']; ?>"><?php echo $row['numero']; ?></a></td>
-				<td><?php echo $row['numero']; ?></td>
-				<td><?php echo $row['nombre']; ?></td>
-				<td><?php echo $row['apellido']; ?></td>
-				<td><?php echo $row['direccion']; ?></td>
-				<td><?php echo $row['lavado']; ?></td>
-				<td><?php echo $row['sms']; ?></td>
+				<td>".$row[0]."</td>
+				
+				<td>".$row[1]."</td>
+				
+				<td>".$row[2]."</td>
+				
+				<td>".$row[3]."</td>
+				
+				<td>".$row[4]."</td>
+				
+				<td>".$row[5]."</td>
+		
+				<td>".$row[6]."</td>
+		
 			</tr>
-		<?php } ?>
-		</tbody>
-	</table>
+			";
+			//}
+			while (@$row = mysql_fetch_array(@$sql)); 
+		echo "	</tbody>
+				</table>";
+		?>
+		</body>
+	
 </html>
