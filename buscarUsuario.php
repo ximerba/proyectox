@@ -1,16 +1,17 @@
 <?php
 	require_once 'conexion.php';
-	$resultado = "";
+	$result = "";
 	$row = null;
+        $conexion = 'conexion.php';
 	//$con = dbConnect();
 	// If 'buscar' is in the array $_POST proceed to make the query.
 	if (isset($_GET['numero'])) {
 		// Create the query
 		$sql = 'SELECT * FROM aplicacion WHERE numero = ?';
 		// we have to tell the PDO that we are going to send values to the query
-		$stmt = $con->prepare($sql);
+		$stmt = $conexion->prepare($sql);
 		// Now we execute the query passing an array toe execute();
-		$results = $stmt->execute(array($_GET['numero']));
+		$result = $stmt->execute(array($_GET['numero']));
 		// Extract the values from $result
 		$row = $stmt->fetch();
 		/*
